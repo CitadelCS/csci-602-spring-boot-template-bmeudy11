@@ -27,4 +27,4 @@
 /build/
 
 ###ignore yaml files that may include secrets
-src/main/resources/*.yaml
+!/src/main/resources/application.yaml
