@@ -25,3 +25,4 @@
 /nbdist/
 /.nb-gradle/
 /build/
+/src/main/resources/*.yaml
