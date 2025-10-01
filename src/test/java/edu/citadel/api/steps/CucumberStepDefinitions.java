@@ -2,22 +2,31 @@ package edu.citadel.api.steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @AutoConfigureMockMvc
 public class CucumberStepDefinitions {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private StepData stepData;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private String requestBody;
 
     // This field holds the result of the latest request
     private ResultActions resultActions;
@@ -57,5 +66,31 @@ public class CucumberStepDefinitions {
         System.out.println("ValidJSON?: " + responseBody);
         // readTree will throw a JsonProcessingException if the string is not valid JSON
         objectMapper.readTree(responseBody);
+    }
+
+    @Given("a request to create an account with username {string}, password {string}, and email {string}")
+    public void aRequestToCreateAnAccountWithUsernamePasswordAndEmail(String username, String password, String email) throws Exception {
+        Map<String, String> body = new HashMap<>();
+        body.put("username", username);
+        body.put("password", password);
+        body.put("email", email);
+        requestBody = objectMapper.writeValueAsString(body);
+    }
+
+    @Given("a request to create an account with username {string} and password {string} but no email")
+    public void aRequestToCreateAnAccountWithUsernameAndPasswordButNoEmail(String username, String password) throws Exception {
+        Map<String, String> body = new HashMap<>();
+        body.put("username", username);
+        body.put("password", password);
+        requestBody = objectMapper.writeValueAsString(body);
+    }
+
+    @When("a user makes a POST request to the {string} endpoint")
+    public void aUserMakesAPOSTRequestToTheEndpoint(String endpoint) throws Exception {
+        ResultActions action = mockMvc.perform(post(endpoint)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody));
+        // Store the result in a shared context so other step definition classes can access it
+        stepData.setLatestAction(action);
     }
 }
