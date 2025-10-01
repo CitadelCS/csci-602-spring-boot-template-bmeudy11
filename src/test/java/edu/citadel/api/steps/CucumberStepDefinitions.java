@@ -152,7 +152,7 @@ public class CucumberStepDefinitions {
             resultActions.andExpect(status().is(unexpectedStatusCode));
             fail("Expected a status code other than " + unexpectedStatusCode + ", but that is what the server returned.");
         } catch (AssertionError e) {
-            scenario.log("Success: The API correctly did not return the expected status code " + unexpectedStatusCode);
+            scenario.log("Success: The API correctly did not return the unexpected status code " + unexpectedStatusCode);
         } catch (Exception e) {
             fail("An unexpected error occurred: " + e.getMessage());
         }
@@ -165,7 +165,7 @@ public class CucumberStepDefinitions {
                     .andExpect(jsonPath("$.version").value(expectedStatus));
             fail("Expected a version other than " + expectedStatus + ", but that is what the server returned.");
         } catch (AssertionError e) {
-            scenario.log("Success: The API correctly did not return the expected version " + expectedStatus);
+            scenario.log("Success: The API correctly did not return the unexpected version " + expectedStatus);
         } catch (Exception e) {
             fail("An unexpected error occurred: " + e.getMessage());
         }
