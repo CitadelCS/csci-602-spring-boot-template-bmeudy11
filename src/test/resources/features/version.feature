@@ -8,7 +8,7 @@ Feature: Info Endpoint
     Then the API should respond with a status code of 200
     And the response body should be a JSON object with a version of "1.0.0"
 
-  #Scenario: Requesting health status with incorrect expectation (Expected Failure)
-  #  When a GET request is made to the "http://localhost:5001/info" endpoint
+  Scenario: Requesting health status with incorrect expectation (Expected Failure)
+    When a GET request is made to the "http://localhost:5001/info" endpoint
     # expected failure
-  #  Then the response body should be a JSON object with a version of "5.0.0"
+    Then the response body should be a JSON object with a version of "5.0.0"

@@ -8,7 +8,7 @@ Feature: Healthcheck Endpoint
     Then the API should respond with a status code of 200
     And the response body should be a JSON object with a status of "ok"
 
-  #Scenario: Requesting health status with incorrect expectation (Expected Failure)
-  #  When a GET request is made to the "http://localhost:5001/health" endpoint
+  Scenario: Requesting health status with incorrect expectation (Expected Failure)
+    When a GET request is made to the "http://localhost:5001/health" endpoint
     # expected failure
-  #  Then the API should respond with a status code of 404
+    Then the API should respond with a status code of 404
