@@ -93,4 +93,10 @@ public class CucumberStepDefinitions {
         // Store the result in a shared context so other step definition classes can access it
         stepData.setLatestAction(action);
     }
+
+    @Then("the account creation API should respond with a status code of {int}")
+    public void the_account_creation_API_should_respond_with_a_status_code_of(int statusCode) throws Exception {
+        ResultActions latestAction = stepData.getLatestAction();
+        latestAction.andExpect(status().is(statusCode));
+    }
 }

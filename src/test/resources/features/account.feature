@@ -6,7 +6,7 @@ Feature: Account Endpoint
   Scenario: Create a new account with valid data
     Given a request to create an account with username "testuser", password "password123", and email "test@example.com"
     When a user makes a POST request to the "/account" endpoint
-    Then the API should respond with a status code of 201
+    Then the account creation API should respond with a status code of 201
 
   Scenario: Request account information for a known account
     When a GET request is made to the "/account/1" endpoint
