@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -15,6 +16,8 @@ public class CucumberStepDefinitions {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     // This field holds the result of the latest request
     private ResultActions resultActions;
@@ -45,5 +48,14 @@ public class CucumberStepDefinitions {
     public void the_response_body_should_be_a_json_object_with_a_user_id_of(int expectedUserId) throws Exception {
         resultActions.andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.user_id").value(expectedUserId));
+    }
+
+    @Then("the response body should be valid JSON")
+    public void the_response_body_should_be_valid_JSON() throws Exception {
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+
+        System.out.println("ValidJSON?: " + responseBody);
+        // readTree will throw a JsonProcessingException if the string is not valid JSON
+        objectMapper.readTree(responseBody);
     }
 }
