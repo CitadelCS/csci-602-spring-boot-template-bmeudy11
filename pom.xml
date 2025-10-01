@@ -27,6 +27,8 @@
         <flyway.version>10.17.1</flyway.version>
         <postgres.version>42.7.3</postgres.version>
         <hibernate.core>6.5.2.Final</hibernate.core>
+        <cucumber.version>7.14.0</cucumber.version>
+        <cucumber.version>7.14.0</cucumber.version>
     </properties>
 
     <dependencies>
@@ -120,6 +122,32 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -134,5 +162,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
