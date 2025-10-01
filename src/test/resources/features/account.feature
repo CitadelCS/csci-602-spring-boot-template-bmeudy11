@@ -10,5 +10,6 @@ Feature: Account Endpoint
 
   Scenario: Requesting account information with incorrect expectation (Expected Failure)
     When a GET request is made to the "http://localhost:5001/account/59999" endpoint
+    Then the API should respond with a status code of 404
     # expected failure
-    Then the response body should be a JSON object with a user_id of 59999
+    And the response body should be a JSON object with a user_id of 59999
