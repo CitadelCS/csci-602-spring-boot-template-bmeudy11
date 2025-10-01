@@ -4,11 +4,11 @@ Feature: Info Endpoint
   So that I know the version is as expected
 
   Scenario: Check the health status of the API
-    When a GET request is made to the "http://localhost:5001/info" endpoint
+    When a GET request is made to the "/info" endpoint
     Then the API should respond with a status code of 200
     And the response body should be a JSON object with a version of "1.0.0"
 
   Scenario: Requesting health status with incorrect expectation (Expected Failure)
-    When a GET request is made to the "http://localhost:5001/info" endpoint
+    When a GET request is made to the "/info" endpoint
     # expected failure
     Then the response body should be a JSON object with a version of "5.0.0"
