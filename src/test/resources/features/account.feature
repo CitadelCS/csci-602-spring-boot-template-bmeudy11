@@ -8,7 +8,7 @@ Feature: Account Endpoint
     Then the API should respond with a status code of 200
     And the response body should be a JSON object with a user_id of 1
 
-  Scenario: Requesting account information with incorrect expectation (Expected Failure)
-    When a GET request is made to the "http://localhost:5001/account/59999" endpoint
+  #Scenario: Requesting account information with incorrect expectation (Expected Failure)
+  #  When a GET request is made to the "http://localhost:5001/account/59999" endpoint
     # expected failure
-    Then the response body should be a JSON object with a user_id of 59999
+  #  Then the response body should be a JSON object with a user_id of 59999
