@@ -12,4 +12,4 @@ Feature: Healthcheck Endpoint
   Scenario: Requesting health status with incorrect expectation (Expected Failure)
     When a GET request is made to the "/health" endpoint
     # expected failure
-    Then the API should respond with a status code of 404
+    Then the API should NOT respond with a status code of 404

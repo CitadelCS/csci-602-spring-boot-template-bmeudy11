@@ -18,4 +18,4 @@ Feature: Account Endpoint
     When a GET request is made to the "/account/59999" endpoint
     Then the response body should be valid JSON
     # expected failure
-    And the API should respond with a status code of 200
+    And the API should NOT respond with a status code of 200

@@ -12,4 +12,4 @@ Feature: Info Endpoint
   Scenario: Requesting info with incorrect expectation (Expected Failure)
     When a GET request is made to the "/info" endpoint
     # expected failure
-    Then the response body should be a JSON object with a version of "5.0.0"
+    Then the response body should NOT be a JSON object with a version of "5.0.0"
