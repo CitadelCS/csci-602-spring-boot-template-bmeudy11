@@ -44,7 +44,11 @@ public class CucumberStepDefinitions {
 
     @When("a GET request is made to the {string} endpoint")
     public void a_get_request_is_made_to_the_endpoint(String endpoint) throws Exception {
-        resultActions = mockMvc.perform(get(endpoint));
+        try {
+            resultActions = mockMvc.perform(get(endpoint));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Then("the API should respond with a status code of {int}")
@@ -116,14 +120,6 @@ public class CucumberStepDefinitions {
         } catch (Exception e) {
             fail(e.getMessage());
         }
-    }
-
-    @Given("a request to create an account with username {string} and password {string} but no email")
-    public void aRequestToCreateAnAccountWithUsernameAndPasswordButNoEmail(String username, String password) throws Exception {
-        Map<String, String> body = new HashMap<>();
-        body.put("username", username);
-        body.put("password", password);
-        requestBody = objectMapper.writeValueAsString(body);
     }
 
     @When("a user makes a POST request to the {string} endpoint")
