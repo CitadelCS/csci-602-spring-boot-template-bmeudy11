@@ -1,4 +1,4 @@
-package edu.citadel.api.steps;
+package edu.citadel.main;
 
 import io.cucumber.spring.ScenarioScope;
 import org.springframework.stereotype.Component;
